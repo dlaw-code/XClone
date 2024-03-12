@@ -19,6 +19,7 @@ namespace TweetClone.API.Controllers
             _tweetService = tweetService;
         }
 
+
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<List<PostDto>>> GetTweets()
@@ -27,7 +28,6 @@ namespace TweetClone.API.Controllers
             return Ok(tweets);
         }
 
-
         [HttpGet("{id}")]
         [Authorize]
         public async Task<ActionResult<PostDto>> GetTweet(int id)
@@ -35,6 +35,7 @@ namespace TweetClone.API.Controllers
             var tweet = await _tweetService.GetTweetByIdAsync(id);
             return Ok(tweet);
         }
+
 
         [HttpPost]
         [Authorize]

@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetClone.API", "TweetClone.API\TweetClone.API.csproj", "{F348850B-F343-427B-BFD3-43DCA27765BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweetClone.API", "TweetClone.API\TweetClone.API.csproj", "{F348850B-F343-427B-BFD3-43DCA27765BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetClone.DATA", "TweetClone.DATA\TweetClone.DATA.csproj", "{0C71690C-982C-42C8-B958-568AF288D12D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweetClone.DATA", "TweetClone.DATA\TweetClone.DATA.csproj", "{0C71690C-982C-42C8-B958-568AF288D12D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetService", "TweetService\TweetService.csproj", "{C9FA8434-41A1-4B8A-A628-99AB04641B7C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetService.Tests", "TweetService.Tests\TweetService.Tests.csproj", "{F7E1D6D0-5D43-43BB-B6FA-70E4B361DCDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweetService.Tests", "TweetService.Tests\TweetService.Tests.csproj", "{F7E1D6D0-5D43-43BB-B6FA-70E4B361DCDD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0CF76EC-4DC5-412E-B611-FB5DE67A7E55}"
 	ProjectSection(SolutionItems) = preProject
@@ -30,10 +28,6 @@ Global
 		{0C71690C-982C-42C8-B958-568AF288D12D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C71690C-982C-42C8-B958-568AF288D12D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C71690C-982C-42C8-B958-568AF288D12D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9FA8434-41A1-4B8A-A628-99AB04641B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9FA8434-41A1-4B8A-A628-99AB04641B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9FA8434-41A1-4B8A-A628-99AB04641B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9FA8434-41A1-4B8A-A628-99AB04641B7C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7E1D6D0-5D43-43BB-B6FA-70E4B361DCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7E1D6D0-5D43-43BB-B6FA-70E4B361DCDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7E1D6D0-5D43-43BB-B6FA-70E4B361DCDD}.Release|Any CPU.ActiveCfg = Release|Any CPU

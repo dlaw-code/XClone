@@ -40,20 +40,7 @@ namespace TweetClone.API.Extensions
         {
             serviceCollection.AddSwaggerGen(setupAction =>
             {
-                //setupAction.SwaggerDoc(
-                //    "OpenAPISpecification",
-                //    new OpenApiInfo()
-                //    {
-                //        Title = "Clone WebAPI",
-                //        Version = "1",
-                //        Description = "Clone text",
-                //        Contact = new OpenApiContact()
-                //        {
-                //            Email = "clone@gmail.com",
-                //            Name = "Clone",
-                //            Url = new Uri("https://clone")
-                //        }
-                //    });
+
 
                 setupAction.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

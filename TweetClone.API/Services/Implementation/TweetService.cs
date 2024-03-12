@@ -14,15 +14,11 @@ namespace TweetClone.API.Services.Implementation
         private readonly ApplicationDbContext _context;
         private readonly Cloudinary _cloudinary;
 
-
-
-
         public TweetService(ApplicationDbContext context, Cloudinary cloudinary)
         {
             _context = context;
             _cloudinary = cloudinary;
         }
-
 
 
         public async Task<List<PostDto>> GetTweetsAsync()
@@ -40,8 +36,6 @@ namespace TweetClone.API.Services.Implementation
                 // Map other properties as needed
             }).ToList();
         }
-
-
 
         public async Task<PostDto> GetTweetByIdAsync(int id)
         {

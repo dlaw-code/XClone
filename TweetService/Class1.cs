@@ -1,4 +1,4 @@
-﻿namespace TweetService
+﻿namespace TweetServices
 {
     public class Class1
     {
