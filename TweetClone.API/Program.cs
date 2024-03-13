@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TweetClone.API.Extensions;
+using TweetClone.API.GlobalException;
 using TweetClone.API.Services.Implementation;
 using TweetClone.API.Services.Interface;
 using TweetClone.DATA.Data;
@@ -23,11 +24,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddScoped<ITweetService, TweetService>();
 builder.Services.AddCloudinary(ClodinaryServiceExtension.GetAccount(config));
 
 builder.Services.AddAuthorization();
 builder.Services.AddSwaggerOpenAPI();
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
@@ -41,7 +44,7 @@ if (app.Environment.IsDevelopment())
 app.MapIdentityApi<IdentityUser>();
 
 app.UseHttpsRedirection();
-
+app.UseExceptionHandler();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -34,6 +34,7 @@ namespace TweetServices.Tests
 
             _context = new ApplicationDbContext(options);
 
+
             // Apply migrations to the test database
             _context.Database.Migrate();
 
@@ -56,9 +57,10 @@ namespace TweetServices.Tests
             // Arrange
             var user = new ApplicationUser
             {
-                // Initialize user properties as needed
+                
                 Email = "test@example.com",
                 UserName = "password123"
+                //Other properties as needed
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -80,6 +82,57 @@ namespace TweetServices.Tests
             _context.Posts.Remove(retrievedPost);
             await _context.SaveChangesAsync();
 
+        }
+
+        [Fact]
+        public async Task CanGetTweetsAsync()
+        {
+            // Arrange
+            var user = new ApplicationUser
+            {
+                Email = "test@example.com",
+                UserName = "password123"
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            // Add some tweets to the database
+            var tweet1 = new Post
+            {
+                UserId = user.Id,
+                Content = "Tweet 1 content",
+                CreatedAt = DateTime.UtcNow.AddDays(-2),
+                ImageUrl = "image1.jpg"
+            };
+            var tweet2 = new Post
+            {
+                UserId = user.Id,
+                Content = "Tweet 2 content",
+                CreatedAt = DateTime.UtcNow.AddDays(-1),
+                ImageUrl = "image2.jpg"
+            };
+            _context.Posts.AddRange(tweet1, tweet2);
+
+            await _context.SaveChangesAsync();
+
+            // Act
+            var tweets = await _tweetService.GetTweetsAsync();
+
+            // Assert
+            Assert.NotNull(tweets);
+            Assert.Equal(2, tweets.Count); // Assuming 2 tweets were added
+
+            // Check tweet content
+            Assert.Contains(tweets, t => t.Content == "Tweet 1 content");
+            Assert.Contains(tweets, t => t.Content == "Tweet 2 content");
+
+            // Check tweet user ID
+            Assert.All(tweets, t => Assert.Equal(user.Id, t.UserId));
+
+            // Clean up
+            _context.Posts.RemoveRange(tweet1, tweet2);
+            await _context.SaveChangesAsync();
         }
     }
 }
