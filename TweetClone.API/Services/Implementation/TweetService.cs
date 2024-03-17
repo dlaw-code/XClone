@@ -22,14 +22,15 @@ namespace TweetClone.API.Services.Implementation
         }
 
 
-        public async Task<List<PostDto>> GetTweetsAsync()
+        public async Task<List<TweetGetResponse>> GetTweetsAsync()
         {
             var tweets = await _context.Posts.ToListAsync();
-            return tweets.Select(t => new PostDto
+            return tweets.Select(t => new TweetGetResponse
             {
                 Id = t.Id,
                 Content = t.Content,
                 CreatedAt = t.CreatedAt,
+                UpdatedAt = t.UpdatedAt,
                 UserId = t.UserId,
                 ImageUrl = t.ImageUrl,
 
@@ -38,7 +39,7 @@ namespace TweetClone.API.Services.Implementation
             }).ToList();
         }
 
-        public async Task<PostDto> GetTweetByIdAsync(int id)
+        public async Task<TweetGetResponse> GetTweetByIdAsync(int id)
         {
             // Retrieve the tweet from the database based on the provided ID
             var tweet = await _context.Posts.FirstOrDefaultAsync(t => t.Id == id);
@@ -49,7 +50,7 @@ namespace TweetClone.API.Services.Implementation
             }
 
             // Map the tweet entity to a TweetDto object and return it
-            return new PostDto
+            return new TweetGetResponse
             {
                 Id = tweet.Id,
                 UserId = tweet.UserId,
@@ -113,7 +114,7 @@ namespace TweetClone.API.Services.Implementation
         }
 
 
-        public async Task<PostTweetResponse> UpdateTweetAsync(int id, PostRequest request, IFormFile image)  
+        public async Task<PostTweetResponse> UpdateTweetAsync(int id, UpdateTweetRequest request, IFormFile image)  
         {
 
             // Retrieve the tweet from the database
@@ -370,7 +371,9 @@ namespace TweetClone.API.Services.Implementation
             return totalLikesCount;      
         }
 
-
-
+        //public Task<PostTweetResponse> UpdateTweetAsync(int id, UpdateTweetRequest updaterequest, IFormFile image)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
