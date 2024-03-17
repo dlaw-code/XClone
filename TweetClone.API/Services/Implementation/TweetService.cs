@@ -371,9 +371,53 @@ namespace TweetClone.API.Services.Implementation
             return totalLikesCount;      
         }
 
-        //public Task<PostTweetResponse> UpdateTweetAsync(int id, UpdateTweetRequest updaterequest, IFormFile image)
-        //{
-        //    throw new NotImplementedException();
-        //}
+
+        public async Task IncrementPostViewCountAsync(int postId)
+        {
+            // Retrieve the post from the database based on the provided ID
+            var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == postId);
+
+            if (post == null)
+            {
+                return; // Post not found
+            }
+
+            // Increment the view count of the post
+            post.ViewCount++;
+
+            // Save the changes to the database
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> GetTotalViewsCountForUserAsync(string userId)
+        {
+            // Retrieve all posts belonging to the user
+            var userPosts = await _context.Posts.Where(p => p.UserId == userId).ToListAsync();
+
+            // Calculate the total view count by summing up the view counts of all posts
+            var totalViewsCount = userPosts.Sum(p => p.ViewCount);
+
+            return totalViewsCount;
+        }
+
+
+
+
+
+
+        public async Task<int> GetPostViewCountAsync(int postId)
+        {
+            // Retrieve the post from the database based on the provided ID
+            var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == postId);
+
+            if (post == null)
+            {
+                return 0; // Post not found or does not have any views yet
+            }
+
+            // Return the view count of the post
+            return post.ViewCount;
+        }
+
     }
 }
