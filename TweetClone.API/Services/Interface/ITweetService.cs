@@ -7,10 +7,10 @@ namespace TweetClone.API.Services.Interface
 {
     public interface ITweetService
     {
-        Task<List<PostDto>> GetTweetsAsync();
-        Task<PostDto> GetTweetByIdAsync(int id);
+        Task<List<TweetGetResponse>> GetTweetsAsync();
+        Task<TweetGetResponse> GetTweetByIdAsync(int id);
         Task<PostTweetResponse> PostTweetAsync(PostRequest request, string userId, IFormFile image);
-        Task<PostTweetResponse> UpdateTweetAsync(int id, PostRequest request, IFormFile image);
+        Task<PostTweetResponse> UpdateTweetAsync(int id, UpdateTweetRequest request, IFormFile image);
         Task<bool> DeleteTweetAsync(int id);
         Task<bool> FollowUserAsync(string followerId, string followeeId);
         Task<bool> UnfollowUserAsync(string followerId, string followeeId);

@@ -25,7 +25,7 @@ namespace TweetClone.API.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<List<PostDto>>> GetTweets()
+        public async Task<ActionResult<List<TweetGetResponse>>> GetTweets()
         {
             var tweets = await _tweetService.GetTweetsAsync();
             return Ok(tweets);
@@ -33,7 +33,7 @@ namespace TweetClone.API.Controllers
 
         [HttpGet("{id}")]
         [Authorize]
-        public async Task<ActionResult<PostDto>> GetTweet(int id)
+        public async Task<ActionResult<TweetGetResponse>> GetTweet(int id)
         {
             var tweet = await _tweetService.GetTweetByIdAsync(id);
             return Ok(tweet);
@@ -55,7 +55,7 @@ namespace TweetClone.API.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<ActionResult<PostTweetResponse>> UpdateTweet(int id, [FromForm] PostRequest request, [FromForm] IFormFile image)
+        public async Task<ActionResult<PostTweetResponse>> UpdateTweet(int id, [FromForm] UpdateTweetRequest request, [FromForm] IFormFile image)
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var response = await _tweetService.UpdateTweetAsync(id, request, image);
