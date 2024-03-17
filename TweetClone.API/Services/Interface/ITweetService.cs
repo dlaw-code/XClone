@@ -22,6 +22,10 @@ namespace TweetClone.API.Services.Interface
         Task<bool> LikeTweetAsync(int tweetId, string userId);
         Task<bool> UnlikeTweetAsync(int tweetId, string userId);
         Task<int> GetTotalLikesCountAsync(int postId);
+        Task IncrementPostViewCountAsync(int postId);
+        Task<int> GetTotalViewsCountForUserAsync(string userId);
+        //Task<int> GetPostViewCountAsync(int postId);
+        //Task<int> GetTotalViewCountAsync();
 
 
     }

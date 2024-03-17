@@ -13,6 +13,7 @@ namespace TweetClone.DATA.Models.Response
         public string Content { get; set; }
         public string ImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }
+        public int ViewCount { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
 }

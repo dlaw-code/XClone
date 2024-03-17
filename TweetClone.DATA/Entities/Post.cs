@@ -18,6 +18,8 @@ namespace TweetClone.DATA.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
+        public int ViewCount { get; set; }
+
         // Navigation property to comments
         public List<Comment> Comments { get; set; } = [];
 

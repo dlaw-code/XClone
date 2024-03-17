@@ -203,6 +203,84 @@ namespace TweetClone.API.Controllers
             return Ok(totalLikesCount);
         }
 
+        [HttpGet("{postId}/view")]
+        public async Task<IActionResult> ViewPost(int postId)
+        {
+            // Increment the view count of the post
+            await _tweetService.IncrementPostViewCountAsync(postId);
+
+            // Optionally, you can return additional data or simply indicate success
+            return Ok(new { message = "Post view count incremented successfully" });
+        }
+
+
+        // In TweetController.cs
+        [HttpGet("users/{userId}/total-views")]
+        public async Task<ActionResult<int>> GetTotalViewsCountForUser(string userId)
+        {
+            // Call the service method to get the total views count for the user
+            var totalViewsCount = await _tweetService.GetTotalViewsCountForUserAsync(userId);
+
+            // Return the total views count
+            return Ok(totalViewsCount);
+        }
+
+
+
+
+
+        //[HttpGet("{id}")]
+        //[Authorize]
+        //public async Task<ActionResult<TweetGetResponse>> GetTweetView(int id)
+        //{
+        //    // Increment the view count of the post
+        //    await _tweetService.IncrementPostViewCountAsync(id);
+
+        //    // Retrieve the tweet from the database based on the provided ID
+        //    var tweet = await _tweetService.GetTweetByIdAsync(id);
+
+        //    if (tweet == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    // Get the count of views for the tweet
+        //    int viewCount = await _tweetService.GetPostViewCountAsync(id);
+
+        //    // Attach the view count to the response
+        //    tweet.ViewCount = viewCount;
+
+        //    return Ok(tweet);
+        //}
+
+
+        //// In TweetController.cs
+
+        //public async Task<int> GetTotalViewCountAsync()
+        //{
+        //    // Query the database to calculate the sum of view counts for all posts
+        //    var totalViewCount = await _context.Posts
+        //                                        .Select(p => p.ViewCount)
+        //                                        .SumAsync();
+
+        //    return totalViewCount;
+        //}
+
+
+        //[HttpGet("total-view-count")]
+        //[Authorize]
+        //public async Task<ActionResult<int>> GetTotalViewCount()
+        //{
+        //    // Call the service method to get the total view count
+        //    var totalViewCount = await _tweetService.GetTotalViewCountAsync();
+
+        //    // Return the total view count
+        //    return Ok(totalViewCount);
+        //}
+
+
+
+
 
     }
 }
