@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TweetClone.DATA.Models.Response
 {
-    public class TweetGetResponse
+    public class TweetGetResponseDto
     {
         public int Id { get; set; }
         public string UserId { get; set; }
